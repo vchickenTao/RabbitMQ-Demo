@@ -1,0 +1,25 @@
+server:
+  port: 9000
+  servlet:
+    session:
+      timeout: 30m
+spring:
+  application:
+    name: rabbitMQ-demo
+  rabbitmq:
+    addresses: 127.0.0.1
+    port: 5672
+    virtual-host: /
+    #confirmRollback开启
+    publisher-confirm-type: correlated
+    #returnRollback开启
+    publisher-returns: true
+    # 只要抵达队列，以异步发送优先回调我们这个returnConfirm
+    template:
+      mandatory: true
+    listener:
+      direct:
+        #手动ack确认模式
+        acknowledge-mode: manual
+  main:
+    allow-circular-references: true
